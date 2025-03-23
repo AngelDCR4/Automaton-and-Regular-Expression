@@ -130,3 +130,5 @@ RE INAOE. (s.f.). Autómatas, expresiones regulares y lenguajes – Capítulo 1.
 Pack regex -- prolog/regex.pl. (s. f.). https://www.swi-prolog.org/pack/file_details/regex/prolog/regex.pl
 ### Otros enlaces
 Automatas finitos y lenguajes regulares. (s. f.). https://cs.famaf.unc.edu.ar/~hoffmann/md19/09.html
+
+Elementos básicos de PROLOG –  acervo para el mejoramiento del aprendizaje de alumnos de  ingeniería, en Inteligencia Artificial. (s. f.). https://virtual.cuautitlan.unam.mx/intar/?page_id=218
