@@ -66,7 +66,10 @@ Una vez declarado esto definí la expresión regular en mis modelos anteriores:
 ## **Versión 3**
 ### ```^(b(a(k(ka|lawa)|z|raka)|idriyah))+$```
 
-
+A comparación con la versión 1 y 2
+- El caracter `^` esta al inicio indicando que puede iniciar la cadena con cualquier palabra formada según lo que dice los `"(...)"`
+- Al final tenemos `+$` indicando que la cadena puede terminar varias veces con las palabras formadas según lo que dice los `"(...)"`
+- 
 Para poder implementar mi expresión regular dentro del código hice uso del paquete de **regex** [5]. Ya implementado mi codigo con regex quedo así:
 ````Prolog
 % Automata V1 y V2
@@ -104,17 +107,26 @@ Si desea hacer una prueba personalizada puede usar el comando ```?-  transaction
 
 Si desea hacer pruebas con la RE puede iniciar el programa con **swipl**, primero instale el paquete de regex con ```?- pack_install(regex).``` y luego puede mandar a llamar la funcion con la expresión regular con ```valid_word2(bakka | baz | ...).```
 
+## Complejidad temporal y espacial
+El automata que diseñe esta en el nivel del lenguaje regular, se puede representar con una expresión regular y se modela con un Autonoma Finito Determinista. Su complejidad temporal es de **O(n)** ya que **n** es la longitud de la palabra, el automata analiza cada simbolo del alfabeto uno por uno y avance de estado a estado. Su complejidad espacial es de **O(1)** porque el automata no requiere de otras estructuras como las pilas, solo mantiene su estado actual y lee las cadenas de izquierda a derecha. 
+
 ## Referencias
-[1]: https://es.wikipedia.org/wiki/Chakobsa_(idioma_ficticio)
+[1]: Lenguaje Chalkobsa - 
+Colaboradores de Wikipedia. (2025, 12 enero). Chakobsa (idioma ficticio). Wikipedia, la Enciclopedia Libre. https://es.wikipedia.org/wiki/Chakobsa_(idioma_ficticio)
 
-[2]: https://www.geocities.ws/mfagundez24/UJAP/Discreta/TeoriadeAutomata3.pdf?utm_source=chatgpt.com" (Clase3.doc, p. 2)
+[2]: Automatas Incompletos - 
+Fagúndez, M. (s.f.). Teoría de autómatas – Clase 3 (Clase3.doc, p. 2). https://www.geocities.ws/mfagundez24/UJAP/Discreta/TeoriadeAutomata3.pdf
 
-[3]: https://aconute.es/computacion/automatasFinitos/ejemplo_deter.html
+[3]: Estado de Error o de Trampa - 
+AUTÓMATAS FINITOS y LENGUAJES REGULARES. (s. f.). https://aconute.es/computacion/automatasFinitos/ejemplo_deter.html
 
-[4]: https://posgrados.inaoep.mx/archivos/PosCsComputacionales/Curso_Propedeutico/Automatas/03_Automatas_ExpresionesRegularesLenguajes/CAPTUL1.PDF
+[4]: Definición - 
+RE INAOE. (s.f.). Autómatas, expresiones regulares y lenguajes – Capítulo 1. Instituto Nacional de Astrofísica, Óptica y Electrónica. https://posgrados.inaoep.mx/archivos/PosCsComputacionales/Curso_Propedeutico/Automatas/03_Automatas_ExpresionesRegularesLenguajes/CAPTUL1.PDF
 
-[5]: https://www.swi-prolog.org/pack/list?p=regex
+[5]: Paquete Regex - 
+«regex» pack for SWI-Prolog. (s. f.). https://www.swi-prolog.org/pack/list?p=regex
 
-[6]: https://www.swi-prolog.org/pack/file_details/regex/prolog/regex.pl
+[6]: Estructura linea Regex -
+Pack regex -- prolog/regex.pl. (s. f.). https://www.swi-prolog.org/pack/file_details/regex/prolog/regex.pl
 ### Otros enlaces
-https://cs.famaf.unc.edu.ar/~hoffmann/md19/09.html
+Automatas finitos y lenguajes regulares. (s. f.). https://cs.famaf.unc.edu.ar/~hoffmann/md19/09.html
