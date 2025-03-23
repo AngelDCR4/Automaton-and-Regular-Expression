@@ -49,13 +49,60 @@ La versión final de mi automata ahora me permite:
 ## Expresión regular
 Otra forma de representar un automata es usando las expresiones regulares. Como se menciona en el documento CAPTUL1.pdf "Las expresiones regulares son un equivalente algebraico para un autómata, puede definir exactamente los mismos lenguajes que los autómatas puedes describir: Lenguajes regulares. Además ofrecen algo que los autómatas no: Manera declarativa de expresar las cadenas que queremos aceptar." [4].
 
-Una vez declarado esto defini la expresión regular en mis modelos anteriores:
+Una vez declarado esto definí la expresión regular en mis modelos anteriores:
 
-### **Versión 1 y 2**
-```^b(a(k(ka$|lawa$)|z$|raka$)|idriyah$)```
+## **Versión 1 y 2**
+### ```^b(a(k(ka$|lawa$)|z$|raka$)|idriyah$)```
 
-### **Versión 3**
-```^(b(a(k(ka|lawa)|z|raka)|idriyah))+$```
+### Desglose de la expresión regular `^b(a(k(ka$|lawa$)|z$|raka$)|idriyah$)`
+
+- `^b`: La palabra comienza con la letra `b`.
+- `a(...)`: Después de la `b`, puede venir una `a` seguida de diferentes combinaciones.
+- `k(ka$|lawa$)`: Si después de `ba` viene una `k`, puede terminar en `ka` (→ **bakka**) o en `lawa` (→ **baklawa**).
+- `z$`: O también después de `ba` puede venir una `z` y terminar con (→ **baz**).
+- `raka$`: También puede terminar en `raka` para (→ **baraka**).
+- `idriyah$`: O puede ir directamente de `b` a `idriyah` sin pasar por `a`  para formar(→ **bidriyah**).
+
+## **Versión 3**
+### ```^(b(a(k(ka|lawa)|z|raka)|idriyah))+$```
+
+
+Para poder implementar mi expresión regular dentro del código hice uso del paquete de **regex** [5]. Ya implementado mi codigo con regex quedo así:
+````Prolog
+% Automata V1 y V2
+valid_word(Word) :-
+    regex('^b(a(k(ka$|lawa$)|z$|raka$)|idriyah$)', [], Word, _).
+
+% Automata V3
+valid_word2(Word) :-
+    regex('^(b(a(k(ka|lawa)|z|raka)|idriyah))+$', [], Word, _).
+````
+
+### Estructura de RE
+La estructura de este código 
+
+ - ```valid_word2(Word) :- ``` Función que solicita palabra a validar.
+Esta línea se basa en esta base de la página de swi-prolog.org [6]
+ - ```regex( 1, 2, 3, 4)``` 
+1. Expresión Regular: Se ingresa la Expresión Regular, posteriormente se pueden colocar ciertas opciones adicionales como:
+2. Arreglo Opciones: Se ingresa ciertas opciones adicionales como: ```icase```, ```dotall```, ```newline```,... .
+3. Texto: Se ingresa el texto a usar para la Expresión Regular
+4. Capturas: Se usa para obtener las subcadenas que coinciden con los grupos de captura (paréntesis) dentro del patrón.
+
+## Pruebas
+La programación del automata contiene 8 pruebas, siendo 5 correctas y 3 incorrectas (para aquellos posibles casos en que se ingrese una palabra invalida):
+1. ```?- bakka.``` se espera -> true
+2. ```?- bidriyah.``` se espera -> true
+3. ```?- bakkabakka.``` se espera -> true
+4. ```?- barakabaz.``` se espera -> true
+5. ```?- bazbarakabidriyah.``` se espera -> true
+6. ```?- abakka.``` se espera -> false
+7. ```?-.baikka.``` se espera -> false
+8. ```?- bakkala.``` se espera -> false
+
+Si desea hacer una prueba personalizada puede usar el comando ```?-  transaction([Σ,Σ,...]).```, colocando letras del alfabeto en Σ para formar una palabra separado por comas.
+
+Si desea hacer pruebas con la RE puede iniciar el programa con **swipl**, primero instale el paquete de regex con ```?- pack_install(regex).``` y luego puede mandar a llamar la funcion con la expresión regular con ```valid_word2(bakka | baz | ...).```
 
 ## Referencias
 [1]: https://es.wikipedia.org/wiki/Chakobsa_(idioma_ficticio)
@@ -66,5 +113,8 @@ Una vez declarado esto defini la expresión regular en mis modelos anteriores:
 
 [4]: https://posgrados.inaoep.mx/archivos/PosCsComputacionales/Curso_Propedeutico/Automatas/03_Automatas_ExpresionesRegularesLenguajes/CAPTUL1.PDF
 
+[5]: https://www.swi-prolog.org/pack/list?p=regex
+
+[6]: https://www.swi-prolog.org/pack/file_details/regex/prolog/regex.pl
 ### Otros enlaces
 https://cs.famaf.unc.edu.ar/~hoffmann/md19/09.html
