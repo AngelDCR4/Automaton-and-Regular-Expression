@@ -47,7 +47,7 @@ La versión final de mi automata ahora me permite:
  - Representar las situaciones de error usando un estado de captación global [3]
 
 ## Expresión regular
-Otra forma de representar un automata es usando las expresiones regulares. Como se menciona en el documento CAPTUL1.pdf Las expresiones regulares son un equivalente algebraico para un autómata, puede definir exactamente los mismos lenguajes que los autómatas puedes describir: Lenguajes regulares. Además ofrecen algo que los autómatas no: Manera declarativa de expresar las cadenas que queremos aceptar. [4].
+Otra forma de representar un automata es usando las expresiones regulares. Como se menciona en el documento CAPTUL1.pdf "Las expresiones regulares son un equivalente algebraico para un autómata, puede definir exactamente los mismos lenguajes que los autómatas puedes describir: Lenguajes regulares. Además ofrecen algo que los autómatas no: Manera declarativa de expresar las cadenas que queremos aceptar." [4].
 
 Una vez declarado esto defini la expresión regular en mis modelos anteriores:
 
